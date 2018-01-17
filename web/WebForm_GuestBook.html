@@ -1,0 +1,448 @@
+<!doctype>
+<!-- Contract Source: https://pastebin.com/06Au2Tn3 -->
+<!-- Данный веб-интерфейс создавался для демонстрации работы студентам BSU Blockchain and Smartcontracts Lab -->
+<!-- gr.vasilkov@gmail.com -->
+<html>                 
+  <head>                             
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/web3.js"></script><!-- https://raw.githubusercontent.com/ethereum/web3.js/develop/dist/web3.js -->                 
+  </head>                 
+  <body>                                  
+    <div class="col-lg-3">                                                
+      <div class="page-header">        <h1>Blockchain Lab GuestBook</h1>                                                
+      </div>                                               
+      <div class="well">                                                             
+        <div>                                                                           
+          <legend class="lead">Settings                                                                  
+          </legend>                                                             
+        </div>                                                             
+        <div>                                                                           
+          <ul>                                                                 
+          </ul>                                                             
+        </div>               <small>Bytecode</small>                                                             
+        <div class="form-group">                
+<textarea class="form-control" type="text" rows="5" id="bytecode">60606040526000600655341561001457600080fd5b5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b5b6115db806100666000396000f300606060405236156100cd576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168062ce8e3e146100d2578063124b17891461013d5780631c02708d146101d95780632de263d7146101ee5780633ab4c1271461022957806353f5e380146102865780635f7e6408146102f15780636604fb7a1461032e5780636f77926b1461035757806386f79edb146104805780638f283970146104cd578063985751881461051e57806398d63d3d1461056f578063fac956ec146105fe575b600080fd5b34156100dd57600080fd5b6100e561063d565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b838110156101295780820151818401525b60208101905061010d565b505050509050019250505060405180910390f35b341561014857600080fd5b6101bf600480803590602001908201803590602001908080601f016020809104026020016040519081016040528093929190818152602001838380828437820191505050505050919080356000191690602001909190803560001916906020019091908035600019169060200190919050506106d2565b604051808215151515815260200191505060405180910390f35b34156101e457600080fd5b6101ec6108f6565b005b34156101f957600080fd5b61020f600480803590602001909190505061098e565b604051808215151515815260200191505060405180910390f35b341561023457600080fd5b610284600480803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610a24565b005b341561029157600080fd5b610299610a9b565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b838110156102dd5780820151818401525b6020810190506102c1565b505050509050019250505060405180910390f35b610314600480803590602001909190803560001916906020019091905050610afe565b604051808215151515815260200191505060405180910390f35b341561033957600080fd5b610341610c86565b6040518082815260200191505060405180910390f35b341561036257600080fd5b61038e600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610c91565b604051808060200186600019166000191681526020018560001916600019168152602001846000191660001916815260200180602001838103835288818151815260200191508051906020019080838360005b838110156103fd5780820151818401525b6020810190506103e1565b50505050905090810190601f16801561042a5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019060200280838360005b838110156104675780820151818401525b60208101905061044b565b5050505090500197505050505050505060405180910390f35b341561048b57600080fd5b6104a16004808035906020019091905050610ef9565b604051808460001916600019168152602001838152602001828152602001935050505060405180910390f35b34156104d857600080fd5b610504600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610f51565b604051808215151515815260200191505060405180910390f35b341561052957600080fd5b610555600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061105d565b604051808215151515815260200191505060405180910390f35b341561057a57600080fd5b6105a6600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061113f565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b838110156105ea5780820151818401525b6020810190506105ce565b505050509050019250505060405180910390f35b341561060957600080fd5b6106236004808035600019169060200190919050506111e4565b604051808215151515815260200191505060405180910390f35b6106456113e7565b60058054806020026020016040519081016040528092919081815260200182805480156106c757602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001906001019080831161067d575b505050505090505b90565b6000803390506000600460003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000180546001816001161561010002031660029004905014151561073d57600080fd5b60008651141561074c57600080fd5b85600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000190805190602001906107a29291906113fb565b5084600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101816000191690555083600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600301816000191690555082600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201816000191690555060058054806001018281610898919061147b565b916000526020600020900160005b83909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050600191505b50949350505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561095157600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b5b565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156109eb57600080fd5b60026000838152602001908152602001600020600080820160009055600182016000905560028201600090555050600190505b5b919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610a7f57600080fd5b8060019080519060200190610a959291906113fb565b505b5b50565b610aa36114a7565b6003805480602002602001604051908101604052809291908181526020018280548015610af357602002820191906000526020600020905b81546000191681526020019060010190808311610adb575b505050505090505b90565b60007f68696768657200000000000000000000000000000000000000000000000000008260001916141580610b5757507f6c6f776572000000000000000000000000000000000000000000000000000000826000191614155b15610b6157600080fd5b600060026000858152602001908152602001600020600201541015610b8557600080fd5b662386f26fc1000034141515610b9a57600080fd5b7f686967686572000000000000000000000000000000000000000000000000000082600019161415610c0a57600260006006548152602001908152602001600020600101600081548092919060010191905055600260006006548152602001908152602001600020600101819055505b7f6c6f77657200000000000000000000000000000000000000000000000000000082600019161415610c7b5760026000600654815260200190815260200160002060010160008154809291906001900391905055600260006006548152602001908152602001600020600101819055505b600190505b92915050565b662386f26fc1000081565b610c996114bb565b6000806000610ca66114a7565b600460008773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001600460008873ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010154600460008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060030154600460008a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060020154600460008b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600401848054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610e885780601f10610e5d57610100808354040283529160200191610e88565b820191906000526020600020905b815481529060010190602001808311610e6b57829003601f168201915b5050505050945080805480602002602001604051908101604052809291908181526020018280548015610ede57602002820191906000526020600020905b81546000191681526020019060010190808311610ec6575b50505050509050945094509450945094505b91939590929450565b60008060006002600085815260200190815260200160002060000154600260008681526020019081526020016000206001015460026000878152602001908152602001600020600201549250925092505b9193909250565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610fae57600080fd5b6000600460008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001805460018160011615610100020316600290049050141561101257600080fd5b816000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600190505b5b919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156110ba57600080fd5b600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000808201600061110a91906114cf565b6001820160009055600282016000905560038201600090556004820160006111329190611517565b5050600190505b5b919050565b6111476114a7565b600460008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206004018054806020026020016040519081016040528092919081815260200182805480156111d757602002820191906000526020600020905b815460001916815260200190600101908083116111bf575b505050505090505b919050565b6000806000803392506000600460008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001805460018160011615610100020316600290049050141561125157600080fd5b6000602060ff16141561126357600080fd5b60066000815480929190600101919050555060009150600090505b6003805490508110156112d057846000191660038281548110151561129f57fe5b906000526020600020900160005b50546000191614156112c257600191506112d0565b5b808060010191505061127e565b60001515821515141561130e57600380548060010182816112f19190611539565b916000526020600020900160005b87909190915090600019169055505b6000600260006006548152602001908152602001600020600101819055508460026000600654815260200190815260200160002060000181600019169055504260026000600654815260200190815260200160002060020181905550600460008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060040180548060010182816113be9190611539565b916000526020600020900160005b8790919091509060001916905550600193505b505050919050565b602060405190810160405280600081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061143c57805160ff191683800117855561146a565b8280016001018555821561146a579182015b8281111561146957825182559160200191906001019061144e565b5b5090506114779190611565565b5090565b8154818355818115116114a2578183600052602060002091820191016114a19190611565565b5b505050565b602060405190810160405280600081525090565b602060405190810160405280600081525090565b50805460018160011615610100020316600290046000825580601f106114f55750611514565b601f0160209004906000526020600020908101906115139190611565565b5b50565b5080546000825590600052602060002090810190611535919061158a565b5b50565b8154818355818115116115605781836000526020600020918201910161155f919061158a565b5b505050565b61158791905b8082111561158357600081600090555060010161156b565b5090565b90565b6115ac91905b808211156115a8576000816000905550600101611590565b5090565b905600a165627a7a72305820bb0235c500e11e5934edc93009ca6cf2fb0a53c371d005b35e5f5578781fee500029</textarea>                                                                        <small>ABI</small>                                                                  
+<textarea class="form-control" type="text" rows="5" id="abi">[{"constant":true,"inputs":[],"name":"getUsers","outputs":[{"name":"","type":"address[]"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"nickname","type":"string"},{"name":"city","type":"bytes32"},{"name":"email","type":"bytes32"},{"name":"country","type":"bytes32"}],"name":"registerNewUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"killContract","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_badIdMessage","type":"uint256"}],"name":"removeMessage","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newGuestBookName","type":"string"}],"name":"changeGuestBookName","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getAllMessages","outputs":[{"name":"","type":"bytes32[]"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_messageId","type":"uint256"},{"name":"_vector","type":"bytes32"}],"name":"changeMessageRating","outputs":[{"name":"success","type":"bool"}],"payable":true,"type":"function"},{"constant":true,"inputs":[],"name":"config_price","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"userAddress","type":"address"}],"name":"getUser","outputs":[{"name":"","type":"string"},{"name":"","type":"bytes32"},{"name":"","type":"bytes32"},{"name":"","type":"bytes32"},{"name":"","type":"bytes32[]"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_messageId","type":"uint256"}],"name":"getMessage","outputs":[{"name":"","type":"bytes32"},{"name":"","type":"int256"},{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newAdminAddress","type":"address"}],"name":"changeAdmin","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_badUser","type":"address"}],"name":"removeUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"userAddress","type":"address"}],"name":"getUserMessages","outputs":[{"name":"","type":"bytes32[]"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_userMessage","type":"bytes32"}],"name":"addMessageFromUser","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_nickname","type":"string"},{"indexed":false,"name":"_addr","type":"address"}],"name":"registered","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_registeredTo","type":"uint256"}],"name":"extendedDuration","type":"event"}]</textarea>                                                                         <small>Ethereum Provider</small>                                                                                                                                
+          <input class="form-control" type="text" id="provider" value="http://localhost:8545">                                                                 
+          </input>                                                                                                                            
+          <div class="form-group">
+          </div>                                                
+          <div id='create' >                                                                            
+            <button class="btn btn-default btn-primary" type="button" onClick="createExampleContract();">Deploy contract                                                                    
+            </button>                                                            
+          </div>                       
+          <div id="status">                                                       
+          </div>         
+<textarea class="form-control" type="text" rows="5" id="status_contract" style="display: none;"></textarea>                                                                  
+          <div id="result">                                                       
+          </div>          
+        </div>                        
+        <div class="form-group">                                                                                          
+          <legend class="lead">Contract Information                                                                          
+          </legend>                                                                                        
+          <div class="form-group has-success" id="addressform">                                                                        
+            <label class="control-label" for="contractAddress">Contract Address                                                                      
+            </label>                                                                        
+            <input class="form-control" id="contractAddress" type="text">                                      
+            <label class="control-label" for="contractAddress">Gas Limit                                                                      
+            </label>                                                                        
+            <input class="form-control" id="gaslimit" value="2000000" type="text">                                                          
+          </div>                                                                                                                   
+        </div>                                                                                             
+      </div>                                  
+    </div>                                                 
+    <div class="col-lg-9">                                                  
+      <div class="page-header">            <h1>Contract Methods</h1>                                                  
+      </div>                                                  
+      <div class="col-lg-6">                                                                  
+        <div class="well">                                                                                           
+          <div class="form-group">                                                                                              
+            <legend class="lead">registerNewUser                                                                              
+            </legend>                <small>eg. (string nickname, bytes32 city, bytes32 email, bytes32 country)</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="registerNewUser" value="" placeholder='"Ivan", "Minsk", "ivan@gmail.com", "Belarus"'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                            
+                <button class="btn btn-default btn-primary" id="registerNewUserBtn" type="button" onClick="registerNewUser()">Send                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                                                 
+            </div>                                                                                                                         
+          </div>                                                     
+          <div class="alert alert-dismissible alert-warning" id="registerNewUserForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>New User Registration Status:</h4>                                                                     
+            <p id="registerNewUserValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                            
+          <div class="form-group">                                                                                              
+            <legend class="lead">addMessageFromUser                                                                              
+            </legend>                            <small>eg. (bytes32 _userMessage)</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="addMessageFromUser" placeholder='"MyMessage"'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="addMessageFromUserBtn" type="button" onClick="addMessageFromUser()">Send                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                                                   
+            </div>                                                                                                                                
+                                                                              
+          </div>                                                      
+          <div class="alert alert-dismissible alert-warning"  id="addMessageFromUserForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>Message From User Status:</h4>                                                                     
+            <p id="addMessageFromUserValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                            
+          <div class="form-group">                                                                                                
+            <legend class="lead">changeMessageRating                                                                              
+            </legend>                                                                <small>msg.value (10 finney == 0.01 ether) https://etherunitconverter.com/</small>                                                                                
+            <div class="input-group">                                                                                              
+              <span class="input-group-addon">finney                                                                                          
+              </span>                                                                                              
+              <input class="form-control" id="value_changerating" type="text" placeholder='10'>                                                                                
+            </div>                              <small>eg. (uint _messageId, bytes32 _vector (higher or lower)</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="changeMessageRating" placeholder='1, "higher"'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="changeMessageRatingBtn" type="button" onClick="changeMessageRating()">Send                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                              
+            </div>                                                                                                                                
+          </div>                                                     
+          <div class="alert alert-dismissible alert-warning" id="changeMessageRatingForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>Change Message Rating Status:</h4>                                                                     
+            <p id="changeMessageRatingValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                            
+          <div class="form-group">                                                                                                 
+            <legend class="lead">changeAdmin                                                                              
+            </legend>                <small>eg. (address newAdminAddress) onlyAdmin</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="changeAdmin" placeholder='0x4bb96091ee9d802ed039c4d1a5f6216f90f81b01'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="changeAdminBtn" type="button" onClick="changeAdmin()">Send                                                                                                      
+                </button>                                                                                                             
+              </span>                                                                                              
+            </div>                                                                                                                                
+          </div>                                             
+          <div class="alert alert-dismissible alert-warning" id="changeAdminForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>Change Admin Status:</h4>                                                                     
+            <p id="changeAdminValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                            
+          <div class="form-group">                                                                                                
+            <legend class="lead">changeGuestBookName                                                                              
+            </legend>                <small>eg. (string newGuestBookName) onlyAdmin</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="changeGuestBookName" placeholder='"newGuestBookName"'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="changeGuestBookNameBtn" type="button" onClick="changeGuestBookName()">Send                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                                                                      
+            </div>                                                                                                                                 
+          </div>                                           
+          <div class="alert alert-dismissible alert-warning" id="changeGuestBookNameForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>Change GuestBook Name Status:</h4>                                                                     
+            <p id="changeGuestBookNameValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                                              
+          <div class="form-group">                                                                                              
+            <legend class="lead">removeMessage                                                                              
+            </legend>                <small>eg. (uint _badIdMessage) onlyAdmin</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="removeMessage"  placeholder='1'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="removeMessageBtn" type="button" onClick="removeMessage()">Send                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                              
+            </div>                                                                                                                                   
+          </div>                                                       
+          <div class="alert alert-dismissible alert-warning" id="removeMessageForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>Remove Message Status:</h4>                                                                     
+            <p id="removeMessageValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                                                          
+          <div class="form-group">                                                                                              
+            <legend class="lead">removeUser                                                                              
+            </legend>                <small>eg. (address _badUser) onlyAdmin</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="removeUser" placeholder='0x4bb96091ee9d802ed039c4d1a5f6216f90f81b01'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="removeUserBtn" type="button" onClick="removeUser()">Send                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                              
+            </div>                                                                                                                            
+          </div>                                             
+          <div class="alert alert-dismissible alert-warning" id="removeUserForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>Remove User Status:</h4>                                                                     
+            <p id="removeUserValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                             
+          <legend class="lead">killContract                                                                  
+          </legend>                                                                                  
+          <div class="form-group">                                                                                                  
+            <button class="btn btn-default btn-danger" id="killContractBtn" type="button" onClick="killContract()">Kill                                                                              
+            </button>                                                                                                                            
+          </div>                                                       
+          <div class="alert alert-dismissible alert-warning" id="killContractForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>Kill Contract Status:</h4>                                                                     
+            <p id="killContractValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                                                     
+        </div>                                                  
+      </div>                                                  
+      <div class="col-lg-6">                                                                  
+        <div class="well">                                                                                  
+          <legend class="lead">getUsers                                                                  
+          </legend> <small>&nbsp;</small>                                                                                   
+          <div class="form-group">                                                                                                  
+            <button class="btn btn-default btn-primary" id="getUsersBtn" type="button" onClick="getUsers()">Get                                                                              
+            </button>                                                                                                  
+                                                                                                                   
+          </div>                                                                  
+          <div class="alert alert-dismissible alert-warning" id="getUsersForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>All Users:</h4>                                                                     
+            <p id="getUsersValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                                
+          <div class="form-group">                                                                                                
+            <legend class="lead">getUser                                                                              
+            </legend>                <small>eg. (address userAddress)</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="getUser" placeholder='0x4bb96091ee9d802ed039c4d1a5f6216f90f81b01'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="getUserBtn" type="button" onClick="getUser()">Get                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                                                                     
+            </div>                                                                                                                                       
+          </div>                                           
+          <div class="alert alert-dismissible alert-warning" id="getUserForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>User Data:</h4>                                                                     
+            <p id="getUserValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                   
+          <legend class="lead">getAllMessages                                                                  
+          </legend>                                                                                  
+          <div class="form-group">                                                                                                  
+            <button class="btn btn-default btn-primary" id="getAllMessagesBtn" type="button" onClick="getAllMessages()">Get                                                                              
+            </button>                                                                                                                                                   
+          </div>                                           
+          <div class="alert alert-dismissible alert-warning" id="getAllMessagesForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>All Messages:</h4>                                                                     
+            <p id="getAllMessagesValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                                       
+          <div class="form-group">                                                                                                
+            <legend class="lead">getUserMessages                                                                              
+            </legend>                <small>eg. (address userAddress)</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="getUserMessages" placeholder='0x4bb96091ee9d802ed039c4d1a5f6216f90f81b01'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="getUserMessagesBtn" type="button" onClick="getUserMessages()">Get                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                                                                     
+            </div>                                                                                                                               
+          </div>                                           
+          <div class="alert alert-dismissible alert-warning" id="getUserMessagesForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>User Messages:</h4>                                                                     
+            <p id="getUserMessagesValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                                                     
+          <div class="form-group">                                                                                                
+            <legend class="lead">getMessage                                                                              
+            </legend>                <small>eg. (uint _messageId)</small>                                                                                              
+            <div class="input-group">                                                                                                              
+              <input class="form-control" type="text" id="getMessage" placeholder='1'>                                                                                         
+              </input>                                                                                                              
+              <span class="input-group-btn">                                                                                                                          
+                <button class="btn btn-default btn-primary" id="getMessageBtn" type="button" onClick="getMessage()">Get                                                                                                      
+                </button>                                                                                                              
+              </span>                                                                                              
+            </div>                                                                                                                                 
+          </div>                                           
+          <div class="alert alert-dismissible alert-warning" id="getMessageForm" style="display: none;">                                                                     
+            <button type="button" class="close" data-dismiss="alert">&times;                                                                   
+            </button>  <h4>Message:</h4>                                                                     
+            <p id="getMessageValidation">                                                                   
+            </p>                                                        
+          </div>                                                                                        
+        </div>                                                  
+      </div>                                  
+    </div>
+<script type="text/javascript">
+    var Web3 = require('web3');
+    var web3 = new Web3();
+    var http_provider = document.getElementById('provider').value;
+    web3.setProvider(new web3.providers.HttpProvider(http_provider));
+    var gaslimit = parseInt(document.getElementById('gaslimit').value);    
+    var code = "0x"+document.getElementById('bytecode').value; //compiled.code;
+    // contract json abi, this is autogenerated using solc CLI
+    var abi = JSON.parse(document.getElementById('abi').value); //compiled.info.abiDefinition;
+    function createExampleContract() {
+        // hide create button
+        document.getElementById('create').style.visibility = 'hidden'; 
+        // let's assume that coinbase is our account
+    	var from = web3.eth.coinbase;
+    	web3.eth.defaultAccount = from;
+        // create contract
+        document.getElementById('status').innerText = "transaction sent, waiting for confirmation";
+        web3.eth.contract(abi).new({data: code, gas: '4700000'}, function (err, contract) {
+            if (err) {
+                console.error(err);
+                return;
+            // callback fires twice, we only want the second call when the contract is deployed
+            } else if(contract.address){
+                //myContract = contract;
+                //console.log('address: ' + myContract.address);
+		
+		            document.getElementById('status').style.visibility = 'hidden';
+		            document.getElementById('status_contract').style.display = 'block';
+                document.getElementById('status_contract').innerText = 'Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash;
+                document.getElementById('contractAddress').value = contract.address;
+                
+            }
+        });
+    };
+      
+    function registerNewUser() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       var data = document.getElementById('registerNewUser').value;
+	     data = data.split(',');
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.registerNewUser(data[0], data[1], data[2], data[3], {value: 0, gas: gaslimit});  // https://github.com/ethereum/wiki/wiki/JavaScript-API#contract-methods
+       var hash_result = JSON.stringify(web3.eth.getTransaction(result), null, ' ');
+       document.getElementById('registerNewUserForm').style.display = 'block';
+       document.getElementById('registerNewUserValidation').innerText = hash_result;    
+    };
+    
+    function addMessageFromUser() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       var data = document.getElementById('addMessageFromUser').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.addMessageFromUser(data, {value: 0, gas: gaslimit});
+       document.getElementById('addMessageFromUserForm').style.display = 'block';
+       document.getElementById('addMessageFromUserValidation').innerText = JSON.stringify(web3.eth.getTransaction(result), null, ' ');
+    };
+    
+    function changeMessageRating() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       var data = document.getElementById('changeMessageRating').value;
+       data = data.split(',');
+       var value_changerating = document.getElementById('value_changerating').value;
+       value_changerating = web3.toWei(parseFloat(value_changerating), 'finney'); // https://etherunitconverter.com/
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.changeMessageRating(parseInt(data[0]), data[1], {value: value_changerating, gas: gaslimit});
+       document.getElementById('changeMessageRatingForm').style.display = 'block';
+       document.getElementById('changeMessageRatingValidation').innerText = JSON.stringify(web3.eth.getTransaction(result), null, ' ');
+    };
+    
+    function changeAdmin() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       var data = document.getElementById('changeAdmin').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.addMessageFromUser(data, {value: 0, gas: gaslimit});
+       document.getElementById('changeAdminForm').style.display = 'block';
+       document.getElementById('changeAdminValidation').innerText = JSON.stringify(web3.eth.getTransaction(result), null, ' ');
+    };  
+    
+    function changeGuestBookName() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       var data = document.getElementById('changeGuestBookName').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.addMessageFromUser(data, {value: 0, gas: gaslimit});
+       document.getElementById('changeGuestBookNameForm').style.display = 'block';
+       document.getElementById('changeGuestBookNameValidation').innerText = JSON.stringify(web3.eth.getTransaction(result), null, ' ');
+    };     
+    
+    function removeMessage() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       var data = document.getElementById('removeMessage').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.addMessageFromUser(parseInt(data), {value: 0, gas: gaslimit});
+       document.getElementById('removeMessageForm').style.display = 'block';
+       document.getElementById('removeMessageValidation').innerText = JSON.stringify(web3.eth.getTransaction(result), null, ' ');
+    }; 
+    
+    function removeUser() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       var data = document.getElementById('removeUser').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.addMessageFromUser(data, {value: 0, gas: gaslimit});
+       document.getElementById('removeUserForm').style.display = 'block';
+       document.getElementById('removeUserValidation').innerText = JSON.stringify(web3.eth.getTransaction(result), null, ' ');
+    }; 
+    
+    function killContract() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.killContract({value: 0, gas: gaslimit});
+       document.getElementById('killContractForm').style.display = 'block';
+       document.getElementById('killContractValidation').innerText = JSON.stringify(web3.eth.getTransaction(result), null, ' ');
+    }; 
+    
+    function getUsers() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.getUsers({value: 0, gas: gaslimit});
+       document.getElementById('getUsersForm').style.display = 'block';
+       document.getElementById('getUsersValidation').innerText = result;
+    };
+    
+    function getAllMessages() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.getAllMessages({value: 0, gas: gaslimit});
+       document.getElementById('getAllMessagesForm').style.display = 'block';
+       document.getElementById('getAllMessagesValidation').innerText = "Hash: "+result+" Decoded: "+web3.toAscii(String(result));
+    };
+    
+    function getUser() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       	   var data = document.getElementById('getUser').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.getUser(data, {value: 0, gas: gaslimit});
+       document.getElementById('getUserForm').style.display = 'block';
+       document.getElementById('getUserValidation').innerText = String(result).split(",").join(", ");
+    }; 
+    
+    function getUserMessages() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+           var data = document.getElementById('getUserMessages').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.getUserMessages(data, {value: 0, gas: gaslimit});
+       document.getElementById('getUserMessagesForm').style.display = 'block';
+       document.getElementById('getUserMessagesValidation').innerText = result;
+    };
+    
+    function getMessage() {
+  	   var contractAddress = document.getElementById('contractAddress').value;
+       var data = document.getElementById('getMessage').value;
+  	   var contract = web3.eth.contract(abi).at(contractAddress);
+  	   var result = contract.getMessage(parseInt(data), {value: 0, gas: gaslimit});
+       document.getElementById('getMessageForm').style.display = 'block';
+       document.getElementById('getMessageValidation').innerText = result;
+    };                          
+    
+    
+</script>                 
+  </body>
+</html>
